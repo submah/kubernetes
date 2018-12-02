@@ -90,7 +90,7 @@ metadata:
   namespace: kube-system
 spec:
   ports:
-  - port: 100
+  - port: 80
     protocol: TCP
     targetPort: 9090
     nodePort: 31000
