@@ -20,8 +20,8 @@ spec:
       containers:
       - name: service
         # see https://github.com/hjacobs/kube-ops-view/releases
-        #image: hjacobs/kube-ops-view:0.7.1
-        image: submah/c4clouds:kubernetes-ops-view
+        image: hjacobs/kube-ops-view:0.7.1
+        #image: submah/c4clouds:kubernetes-ops-view
         args:
         # remove this option to use built-in memory store
         - --redis-url=redis://kube-ops-view-redis:6379
