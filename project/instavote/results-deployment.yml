@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vote
+  name: results
 spec:
   strategy:
     type: RollingUpdate
@@ -10,28 +10,24 @@ spec:
       maxUnavailable: 1
   revisionHistoryLimit: 4
   paused: false
-  replicas: 8
+  replicas: 4
   minReadySeconds: 20
   selector:
     matchLabels:
-      role: vote
+      role: results
     matchExpressions:
-      - {key: version, operator: In, values: [v1, v2, v3]}
+      - {key: version, operator: In, values: [v1, v2, v3, latest]}
   template:
     metadata:
-      name: vote
+      name: results
       labels:
-        app: python
-        role: vote
-        version: v1
+        app: node
+        role: results
+        version: latest
     spec:
       containers:
         - name: app
-          image: c4clouds/vote:v1
-          #Config Maps goes here
-          envFrom:
-            - configMapRef:
-                name: vote
+          image: c4clouds/vote-result:latest
           ports:
             - containerPort: 80
               protocol: TCP
