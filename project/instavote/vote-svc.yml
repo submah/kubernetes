@@ -9,7 +9,7 @@ spec:
     role: vote
     version: v1
   ports:
-    - port: 80
+    - port: 82
       targetPort: 80
       nodePort: 30003
   type: NodePort

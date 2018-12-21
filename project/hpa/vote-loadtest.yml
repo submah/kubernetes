@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadtest
+spec:
+  template:
+    spec:
+      containers:
+      - name: siege
+        image: c4clouds/loadtest:v1
+        command: ["siege",  "--concurrent=50", "--benchmark", "--time=10m", "10.96.64.181"]
+      restartPolicy: Never
+  completions: 2
+  parallelism: 1
