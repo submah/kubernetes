@@ -10,7 +10,6 @@ spec:
   containers:
     - name: app
       image: c4clouds/vote:v1
-      #image: schoolofdevops/vote:v1
       ports:
         - containerPort: 80
           protocol: TCP
