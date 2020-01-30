@@ -37,5 +37,5 @@ After master being initialized, it should display the command which could be use
 kubeadm join 10.128.0.2:6443 --token m7qgmb.6gjki057ajpo49nq \
     --discovery-token-ca-cert-hash sha256:fc5d3ec0fe14b141cf87baa206082cf3a26b8c158c02e255f232e1768905b8b7
 ```
-Note: Dont copy and paste the above command, user the out which you have received at the master initialization
+Note: Don't copy and paste the above command, use the output which you have received at the master initialization
 
