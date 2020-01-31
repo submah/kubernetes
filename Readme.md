@@ -1,5 +1,7 @@
 <img src="images/c4logo.png">
 
+**--LAB-01
+
 __Master node must be configured with 2 CPU and 2GB of RAM__
 ### Installing Kubernetes on Ubuntu
 
@@ -81,3 +83,10 @@ http://<NODE_IP>:servie-port/#scale=2.0
 
 Insert image viasualizer
 
+
+**LAB-02
+### Deploying Application with Kubernetes
+> Launch vote application with kubernetes
+```
+kubectl run vote --image=c4clouds/vote:v1
+```
