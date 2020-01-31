@@ -136,3 +136,9 @@ kubectl create deployment  result --image=c4clouds/vote-result
 
 kubectl expose deployment result --type=NodePort --port 80
 ```
+
+**LAB-02**
+=======================================================================================================================================
+In this Lab we will be learning how to write pod spec with YAML syntax
+
+[Click here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/) to see Kubernetes reference page
