@@ -232,3 +232,42 @@ kubectl describe pod db
 kubectl get events
 ```
 
+### Creating Multi Container Pods
+File: multi_container_pod.yml 
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    tier: front
+    app: nginx
+    role: ui
+spec:
+  containers:
+    - name: nginx
+      image: nginx:stable-alpine
+      ports:
+        - containerPort: 80
+          protocol: TCP
+      volumeMounts:
+        - name: data
+          mountPath: /var/www/html-sample-app
+
+    - name: sync
+      image: c4clouds/sync:v2
+      volumeMounts:
+        - name: data
+          mountPath: /var/www/app
+
+  volumes:
+    - name: data
+      emptyDir: {}
+      ```
+
+To Creat this pod
+```
+kubectl apply -f multi_container_pod.yml
+```
+### To Login to the pod
