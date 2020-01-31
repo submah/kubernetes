@@ -118,4 +118,21 @@ kubectl get svc
 
 ### Working with Service Discovery
 
+Once you expose the vote applcation to nodeport you can view the application by navigaing to any NODEIP:SERVICEPORT
+After getting the UI if you click on any of the button you will get error message. Inorder to resolve this follow the below command
 
+```
+kubectl  create deployment  redis  --image=redis:alpine
+
+kubectl expose deployment redis --port 6379
+
+kubectl  create deployment  worker --image=c4clouds/worker
+
+kubectl  create deployment  db --image=postgres:9.4
+
+kubectl expose deployment db --port 5432
+
+kubectl create deployment  result --image=c4clouds/vote-result
+
+kubectl expose deployment result --type=NodePort --port 80
+```
