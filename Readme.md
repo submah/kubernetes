@@ -196,3 +196,39 @@ Local host volumes are of two types:
   * hostPath
 
 [Click here](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) for Reference document 
+
+File: db-pod.yaml in you cloned repository
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db
+  labels:
+    app: postgres
+    role: database
+    tier: back
+spec:
+  containers:
+    - name: db
+      image: postgres:9.4
+      ports:
+        - containerPort: 5432
+      volumeMounts:
+      - name: db-data
+        mountPath: /var/lib/postgresql/data
+  volumes:
+  - name: db-data
+    hostPath:
+      path: /var/lib/pgdata
+      type: DirectoryOrCreate
+```
+### To create this pod
+```
+kubectl apply -f db-pod.yaml
+
+kubectl describe pod db
+
+kubectl get events
+```
+
