@@ -141,4 +141,58 @@ kubectl expose deployment result --type=NodePort --port 80
 =======================================================================================================================================
 In this Lab we will be learning how to write pod spec with YAML syntax
 
-[Click here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/) to see Kubernetes reference page
+[Click here](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/) to see the Kubernetes API Reference Document
+
+AKMS => Resource Configs Specs
+
+```yaml
+apiVersion: 
+kind:
+metadata:
+spec:
+```
+
+### Writing Pod Spec
+Refer to https://github.com/submah/kubernetes/tree/master/lab
+
+
+Use the template to create you pod and execute the blow commad to view it.
+
+### To view pods
+```
+kubectl get pods
+
+kubectl get po
+
+kubectl get pods -o wide
+
+kubectl get pods vote
+```
+
+### To get detailed info about an Object in kubernetes
+```
+Syntax : kubectl describe ojbect_name name_of_the_ojbect
+kubectl describe pod vote
+```
+
+### To view logs of a pod
+```
+kubectl logs vote
+```
+
+### To Login to a pod
+```
+kubectl exec -it vote  sh
+```
+
+### Adding a Volume for data persistence
+Lets create a pod for database and attach a volume to it. To achieve this we will need to
+
+create a volumes definition
+attach volume to container using VolumeMounts property
+
+Local host volumes are of two types:
+  * emptyDir
+  * hostPath
+
+[Click here](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) for Reference document 
