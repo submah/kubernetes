@@ -90,3 +90,30 @@ Insert image viasualizer
 ```
 kubectl run vote --image=c4clouds/vote:v1
 ```
+
+### To view the pod
+```
+kubectl get pods
+
+kubectl get deployments
+```
+
+### Scalability
+Scale the vote app to run X number of pods
+
+```
+kubectl scale deployment vote --replicas=6
+
+kubectl get pods
+```
+
+### Accessing the vote application 
+```
+kubectl expose deployment vote --type=NodePort --port 80
+
+kubectl get svc
+```
+
+### Working with Service Discovery
+
+
