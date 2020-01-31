@@ -1,0 +1,22 @@
+apiVersion: 
+kind: 
+metadata:
+  name: db
+  labels:
+    app: postgres
+    role: database
+    tier: back
+spec:
+  containers:
+    - name: db
+      image: postgres:9.4
+      ports:
+        - containerPort: 5432
+      volumeMounts:
+      - name: 
+        mountPath: SEE THE OFFICIAL DOCKER IMAGE FOR MOUNT PATH
+  volumes:
+  - name: 
+    hostPath:
+      path: /var/lib/pgdata
+      type: DirectoryOrCreate
