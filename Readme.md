@@ -67,4 +67,17 @@ git clone https://github.com/submah/kubernetes.git
 kubectl apply -f kubernetes-ops-view/deploy/
 ```
 
+Visualiser is accessable over a service port whic we can get it for below command
+
+```
+kubectl get svc | grep -i kube-ops-view
+```
+
+insert picture kube-ops-view-port
+
+```
+http://<NODE_IP>:servie-port/#scale=2.0
+```
+
+Insert image viasualizer
 
