@@ -17,7 +17,7 @@ In Kubernetes you can find 4 types of services which are
   
   File: vote-svc.yaml
   
-  ```yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
