@@ -11,7 +11,7 @@ We pick DaemonSet, which will ensure that one instance of traefik is run on ever
 
 Deploy ingress controller with daemonset as
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-rbac.yaml
 kubectl apply -f https://raw.githubusercontent.com/containous/traefik/v1.7/examples/k8s/traefik-ds.yaml
 
