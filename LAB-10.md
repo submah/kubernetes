@@ -19,7 +19,7 @@ kubectl drain k8s-node2
 ```
 kubectl get node
 ```
-<img src="images/cordon-node.png">
+<img src="images/cordon-node.PNG">
 
 ### Uncordon a Node
 ```
@@ -27,5 +27,5 @@ kubectl uncordon k8s-node2
 node/k8s-node2 uncordoned
 ```
 
-<img src="images/uncordon.png">
+<img src="images/uncordon.PNG">
 
