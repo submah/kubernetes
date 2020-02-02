@@ -180,7 +180,7 @@ metadata:
 rules:
 - apiGroups: ["*"]
   resources: ["*"]
-  verbs: ["get", "list", "watchi", "update", "patch", "create"]
+  verbs: ["get", "list", "watch", "update", "patch", "create"]
 ```
 
 ```
@@ -207,3 +207,38 @@ roleRef:
 ```
 kubectl apply -f kim-rolebinding.yml
 ```
+
+
+### Exercise
+Create a ClusterRole and ClusterRolebinding for ops group with the authorizations defined in the table above. Once applied, test it
+
+### Solution
+file: maya-clusterrole.yml
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: maya-clusterrole
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["get", "list", "watch", "update", "patch", "create"]
+```
+
+file: maya-clusterrole-binding.yml
+
+```yaml
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: maya-cluster-rolebinding
+subjects:
+- kind: Group
+  name: ops
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: maya-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+```  
