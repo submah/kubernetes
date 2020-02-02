@@ -162,3 +162,48 @@ Whats the difference between Roles and ClusterRoles ??
 
 * Role is limited to a namespace (Projects/Orgs/Env)
 * ClusterRole is Global
+
+### Create a Role and Rolebinding for dev group with the authorizations defined in the table above. Once applied, test it
+
+>Switched to context "kubernetes-admin@kubernetes".
+```
+kubectl config use-context kubernetes-admin@kubernetes
+```
+file: kim-role.yml
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: operation
+  name: kim-operation
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["get", "list", "watchi", "update", "patch", "create"]
+```
+
+```
+kubectl apply -f kim-role.yml
+```
+file: kim-rolebinding.yml
+
+```yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kim-operation-rolebinding
+  namespace: operation
+subjects:
+- kind: Group
+  name: dev
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: kim-operation
+  apiGroup: rbac.authorization.k8s.io
+```  
+
+```
+kubectl apply -f kim-rolebinding.yml
+```
