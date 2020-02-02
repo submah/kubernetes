@@ -58,3 +58,107 @@ Comment line# 13
 #RANDFILE               = $ENV::HOME/.rnd
 ```
 
+After generated the CSR file, now you have to signed the certificate by the **Certificate Authority (CA)** which is Kubernetes Master.
+  * Certificate : ca.crt (kubeadm) 
+  * Pricate Key : ca.key (kubeadm) 
+
+You would typically find it the following paths
+** /etc/kubernetes/pki **
+
+Signing the CSR
+```
+openssl x509 -req -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -days 730 -in kim.csr -out kim.crt
+```
+
+### Setting up User configs with kubectl
+In order to configure the users that you created above, following steps need to be performed with kubectl
+
+* Add credentials in the configurations
+* Set context to login as a user to a cluster
+* Switch context in order to assume the user's identity while working with the cluster
+
+to add credentials,
+
+```
+kubectl config set-credentials kim --client-certificate=/root/.kube/users/kim.crt --client-key=/root/.kube/users/kim.key
+```
+
+```
+kubectl config get-contexts
+```
+
+To set context for kubernetes cluster,
+```
+kubectl config set-context kim-kubernetes --cluster=kubernetes  --user=kim --namespace=operation
+```
+
+output
+```console
+Context "kim-kubernetes" created.
+```
+
+You can varify with 
+```console
+# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kim-kubernetes                kubernetes   kim                operation
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+```
+and
+```yaml
+root@k8s-master:~/.kube/users# kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.128.0.2:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: operation
+    user: kim
+  name: kim-kubernetes
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: kim
+  user:
+    client-certificate: users/kim.crt
+    client-key: users/kim.key
+- name: kubernetes-admin
+  user:
+    client-certificate-data: REDACTED
+    client-key-data: REDACTED
+```
+To switch to different context
+```console
+kubectl config use-context kim-kubernetes
+
+kubectl config get-contexts
+
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kim-kubernetes                kubernetes   kim                operation
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+```
+To see the running pod's
+```
+kubectl get pods
+```
+
+output
+```console
+root@k8s-master:~/.kube/users# kubectl get pod
+Error from server (Forbidden): pods is forbidden: User "kim" cannot list resource "pods" in API group "" in the namespace "operation"
+```
+
+### Define authorisation rules with Roles and ClusterRoles
+Whats the difference between Roles and ClusterRoles ??
+
+* Role is limited to a namespace (Projects/Orgs/Env)
+* ClusterRole is Global
