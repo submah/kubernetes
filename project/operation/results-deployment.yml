@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: results
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  replicas: 4
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: results
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3, latest]}
+  template:
+    metadata:
+      name: results
+      labels:
+        app: node
+        role: results
+        version: latest
+    spec:
+      containers:
+        - name: app
+          image: c4clouds/vote-result:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP

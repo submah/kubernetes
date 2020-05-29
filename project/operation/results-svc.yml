@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: results
+  labels:
+    role: results
+spec:
+  selector:
+    role: results
+    version: latest
+  ports:
+    - port: 81
+      targetPort: 80
+      nodePort: 30004
+  type: NodePort

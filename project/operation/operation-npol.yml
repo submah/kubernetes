@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+spec:
+  podSelector: 
+    matchExpressions:
+      - {key: app, operator: In, values: [python, java, node, redis, postgres]}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+      - namespaceSelector:
+          matchLabels:
+            project: operator
+  egress:
+  - to:
+      - namespaceSelector:
+          matchLabels:
+            project: operator
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: NetworkPolicy
+#metadata:
+#  name: public-ingress
+#  namespace: operator
+#spec:
+#  podSelector:
+#    matchExpressions:
+#      - {key: role, operator: In, values: [vote, results]}
+#  policyTypes:
+#  - Ingress
+#  ingress:
+#    - {}
