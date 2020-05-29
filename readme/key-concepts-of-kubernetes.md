@@ -2,13 +2,19 @@
 
 ### Key Concepts of Kubernetes
 In this lession we are going to learn about:
+- Kubernetes Architecture
 - Namespaces
 - Pods
 - Replica Sets and Deployments
 - Service Discovery and Load Balancing
 - Configmaps, Storage, Network, RBAC
 - Statefulsets, Crons and Jobs
-- Kubernetes Architecture
+
+
+### Kubernetes Architecture
+
+<img src="../images/kubernetes_architecture.png">
+
 
 ### Namespaces
 Namespaces are Kubernetes objects which partition a single Kubernetes cluster into multiple virtual clusters. Each Kubernetes namespace provides the scope for Kubernetes Names it contains; which means that using the combination of an object name and a Namespace, each object gets an unique identity across the cluster.
@@ -171,4 +177,6 @@ Service is been created, but you still need to launch the actual pods running re
 kubectl apply -f redis-deploy.yaml
 kubectl describe svc redis
 ```
+### Configmaps, Storage, Network, RBAC
+### Statefulsets, Crons and Jobs
 
