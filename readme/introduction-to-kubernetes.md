@@ -15,12 +15,12 @@ In this section we are going to learn about:
 - Why Do We Need Container Orchestration?
   Container orchestration is used to automate the following tasks at scale:
   
-    --> Configuring and scheduling of containers
-    --> Provisioning and deployments of containers
-    --> Availability of containers
-    --> The configuration of applications in terms of the containers that they run in
-    --> Scaling of containers to equally balance application workloads across infrastructure
-    --> Allocation of resources between containers
-    --> Load balancing, traffic routing and service discovery of containers
-    --> Health monitoring of containers
-    --> Securing the interactions between containers.
+    [X] Configuring and scheduling of containers
+    [X] Provisioning and deployments of containers
+    [X] Availability of containers
+    [X] The configuration of applications in terms of the containers that they run in
+    [X] Scaling of containers to equally balance application workloads across infrastructure
+    [X] Allocation of resources between containers
+    [X] Load balancing, traffic routing and service discovery of containers
+    [X] Health monitoring of containers
+    [X] Securing the interactions between containers.
