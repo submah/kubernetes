@@ -34,6 +34,7 @@ Kubernetes Pods also utilize useful and interesting methods of container network
 
 ### Replica Sets and Deployments
 - What are Replica Sets?
+
 We have already learned that one of the key advantages of Pods is that they allow developers/administrator to group sets of containers as an application unit and easily begin orchestrating them as workloads. Following the creation of a pod’s template, instances of this pod can then be scaled horizontally to make a Developer’s multi container applications more highly available. To manage the scaling of pods, Kubernetes uses an API object called a **ReplicaSet**.
 
 According to the [Kubernetes Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/), Replica Sets ensure "that a specified number of pod replicas are running at any given time." As a side note, the documentation extensively focuses on pointing out that ReplicaSets
