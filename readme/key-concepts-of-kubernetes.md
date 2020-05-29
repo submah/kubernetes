@@ -13,7 +13,8 @@ In this lession we are going to learn about:
 
 ### Kubernetes Architecture
 
-<img src="../images/kubernetes_architecture.png">
+#<img src="../images/components-of-kubernetes.png">
+<img src="../images/components-of-kubernetes.png">
 
 
 ### Namespaces
