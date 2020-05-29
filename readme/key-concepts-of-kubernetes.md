@@ -20,3 +20,5 @@ By default, a Kubernetes cluster is created with the following three namespaces:
 - kube-public: Namespace for resources that are publicly readable by all users. This namespace is generally reserved for cluster usage.
 
 - kube-system: It is the Namespace for objects created by Kubernetes systems/control plane.
+
+<img src="../images/namespaces.png">
