@@ -25,3 +25,20 @@ In this section we are going to learn about:
     - [X] **Health monitoring of containers**
     - [X] **Securing the interactions between containers.**
 
+### `Battles of COEs, which one to choose`
+Here we are considering Kubernetes. Kubernetes is based on Google’s experience of running workloads at huge scale in production over the past fifteen years. It’s not an open sourcing of Borg, their internal container orchestration system, but draws on lessons Google have learned from running Borg.
+
+Where Docker Swarm extends single host Docker, Kubernetes’ starting point is the cluster itself.
+
+### `Key Features of a COE`
+If you’re considering Kubernetes, now’s the time to think about how willing you are to step away from the Docker way.
+Here’s what makes up a Kubernetes cluster:
+
+- **Master:** by default, a single master handles API calls, assigns workloads and maintains configuration state.
+- **Minions:** the servers that run workloads and anything else that’s not on the master.
+- **Pods:** units of compute power, made-up of one or a handful of containers deployed on the same host, that together perform a task,  have a single IP address and flat networking within the pods.
+- **Services:** front end and load balancer for pods, providing a floating IP for access to the pods that power the service, meaning that changes can happen at the pod-level while maintaining a stable interface.
+- **Replication controllers:** responsible for maintaining X replicas of the required pods.
+- **Labels:** key-value tags (e.g. “Name”) that you and the system use to identify pods, replication controllers and services.
+
+
