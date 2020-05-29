@@ -48,6 +48,7 @@ A ReplicaSet also has an additional field that needs to be set. This is the spec
 ReplicaSets are rarely used independently to to manage pods. Instead, the most popular choice is to use layers of encapsulation that makes use of ReplicaSets in the form of Workload API objects. The type of Workload API object we will be focusing on is the Deployment.
 
 * So, why do we need Deployments?
+
 Deployments encapsulate replica sets and pods in the Kubernetes’ resource hierarchy and provide a declarative method of updating the state of both. One method of accessing this declarative interface is through kubectl.
 
 Just like ReplicaSets, Deployments are Kubernetes API Objects and require the apiVersion, kind, and metadata. The Kubernetes Documentation provides an example [ngnix-deployment.yaml](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), which is a great example to demonstrate the basic functionality of Deployments.
