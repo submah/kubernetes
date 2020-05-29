@@ -53,3 +53,4 @@ Kubernetes Pods also utilize useful and interesting methods of container network
 
     Just like ReplicaSets, Deployments are Kubernetes API Objects and require the apiVersion, kind, and metadata. The Kubernetes Documentation provides an example [ngnix-deployment.yaml](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), which is a great example to demonstrate the basic functionality of Deployments.
 
+    <img src="../images/Deployment.png">
