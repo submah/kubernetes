@@ -82,6 +82,8 @@ insert picture kube-ops-view-port
 http://<NODE_IP>:servie-port/#scale=2.0
 ```
 
-Insert image viasualizer
+<img src="images/viasualizer.PNG">
+
+
 
 
