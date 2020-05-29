@@ -8,7 +8,7 @@ In this section we are going to learn about:
 * What makes Kubernetes the defacto COE choice.
 * Negatives of using Kubernetes
 
-### `The need for a Container Orchestration Engine`
+### The need for a Container Orchestration Engine
 - What is Container Orchestration?
   Container orchestration is the automation of all aspects of coordinating and managing containers. Container orchestration is focused on managing the life cycle of containers and their dynamic environments.
 
@@ -25,12 +25,12 @@ In this section we are going to learn about:
     - [X] **Health monitoring of containers**
     - [X] **Securing the interactions between containers.**
 
-### `Battles of COEs, which one to choose`
+### Battles of COEs, which one to choose
 Here we are considering Kubernetes. Kubernetes is based on Google’s experience of running workloads at huge scale in production over the past fifteen years. It’s not an open sourcing of Borg, their internal container orchestration system, but draws on lessons Google have learned from running Borg.
 
 Where Docker Swarm extends single host Docker, Kubernetes’ starting point is the cluster itself.
 
-### `Key Features of a COE`
+### Key Features of a COE
 If you’re considering Kubernetes, now’s the time to think about how willing you are to step away from the Docker way.
 Here’s what makes up a Kubernetes cluster:
 
@@ -41,7 +41,7 @@ Here’s what makes up a Kubernetes cluster:
 - **Replication controllers:** responsible for maintaining X replicas of the required pods.
 - **Labels:** key-value tags (e.g. “Name”) that you and the system use to identify pods, replication controllers and services.
 
-### `What makes Kubernetes the defacto COE choice`
+### What makes Kubernetes the defacto COE choice
 Benefits of Kubernetes for companies:
 - Control and automate deployments and updates
 - Save money by optimizing infrastructural resources thanks to the more efficient use of hardware Orchestrate containers on multiple hosts
@@ -49,7 +49,7 @@ Benefits of Kubernetes for companies:
 - Scale resources and applications in real time
 - Test and autocorrection of applications
 
-### `Negatives of using Kubernetes`
+### Negatives of using Kubernetes
 - Kubernetes can be an overkill for simple applications
 
 - Kubernetes is very complex and can reduce productivity
