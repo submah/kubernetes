@@ -41,4 +41,20 @@ Here’s what makes up a Kubernetes cluster:
 - **Replication controllers:** responsible for maintaining X replicas of the required pods.
 - **Labels:** key-value tags (e.g. “Name”) that you and the system use to identify pods, replication controllers and services.
 
+### `What makes Kubernetes the defacto COE choice`
+Benefits of Kubernetes for companies:
+- Control and automate deployments and updates
+- Save money by optimizing infrastructural resources thanks to the more efficient use of hardware Orchestrate containers on multiple hosts
+- Solve many common problems deriving by the proliferation of containers by organizing them in “pods” (see the last post!)
+- Scale resources and applications in real time
+- Test and autocorrection of applications
+
+### `Negatives of using Kubernetes`
+- Kubernetes can be an overkill for simple applications
+
+- Kubernetes is very complex and can reduce productivity
+
+- The transition to Kubernetes can be cumbersome
+
+- Kubernetes can be more expensive than its alternatives
 
