@@ -9,3 +9,9 @@ In this lession we are going to learn about:
 - Setting up a kubernetes Visualizer
 - Resetting cluster created with kubeadm
 
+### Provisioning and configuring on AWS/GCP
+Create three VM's on AWS or GCP Cloud Platform.
+
+1 Master Node and 2 Worker Nodes.
+
+#### Initialise Cluster with Kubeadm
