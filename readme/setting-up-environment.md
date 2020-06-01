@@ -89,7 +89,13 @@ ports:
 #To apply 
 kubectl apply -f recommended.yaml
 ```
- 
+
+In order to access the Kubernetes dashboard 
+https://Node-IP-Address:32414 
+
+[output]
+
+<img src="../images/kubernetes-dashboard-token.png">
 
 ### Set up Visualiser
 ```
