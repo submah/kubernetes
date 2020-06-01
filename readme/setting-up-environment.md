@@ -4,7 +4,7 @@ In this lession we are going to learn about:
 
 - Provisioning and configuring on AWS/GCP
 - Initialise Cluster with Kubeadm
-- Setting up Weave CNI
+- Setting up Calico CNI
 - Launching Kubernetes Dashboard
 - Setting up a kubernetes Visualizer
 - Resetting cluster created with kubeadm
@@ -75,6 +75,21 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
 <img src="../images/get-nodes.png">
 
+### Launching Kubernetes Dashboard
+```yml
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+
+#Open the file nad update the service to
+ports:
+    - nodePort: 32414
+      port: 443
+      targetPort: 8443
+  type: NodePort
+
+#To apply 
+kubectl apply -f recommended.yaml
+```
+ 
 
 ### Set up Visualiser
 ```
