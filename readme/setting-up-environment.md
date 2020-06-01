@@ -79,7 +79,18 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ### Set up Visualiser
 ```
 git clone https://github.com/submah/kubernetes.git
-kubectl apply -f kubernetes-ops-view/deploy/
+apply -f kubernetes/kubernetes-ops-view/deploy
+```
+[Output]
+```
+serviceaccount/kube-ops-view created
+clusterrole.rbac.authorization.k8s.io/kube-ops-view created
+clusterrolebinding.rbac.authorization.k8s.io/kube-ops-view created
+deployment.apps/kube-ops-view created
+ingress.extensions/kube-ops-view created
+deployment.apps/kube-ops-view-redis created
+service/kube-ops-view-redis created
+service/kube-ops-view created
 ```
 
 Visualiser is accessable over a service port whic we can get it for below command
