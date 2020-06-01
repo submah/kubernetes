@@ -83,5 +83,7 @@ To creat a service
 kubectl apply -f vote-service.yml
 
 ```
+<img src="../images/vote-app-service-output.png">
+
 ### Attaching a volume to a Pod
 
