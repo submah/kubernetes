@@ -69,12 +69,12 @@ add picture "kubectl-get-nodes"
 
 If you see the above image you can find both the worker nodes are in NotReady state. It means Master node is unable to communicat to the worker node(s). In order make the communication we have to install the netwrok driver. we are going to install Weave
 
-### Installing Weave CNI
+### Installing Calico CNI
 ```
-export kubever=$(kubectl version | base64 | tr -d '\n')
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
-insert picture kubectl-get-nodes-ready
+<img src="../images/kubectl-get-nodes.PNG">
+
 
 ### Set up Visualiser
 ```
