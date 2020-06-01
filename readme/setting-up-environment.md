@@ -73,7 +73,7 @@ If you see the above image you can find both the worker nodes are in NotReady st
 ```
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
-<img src="../images/kubectl-get-nodes.PNG">
+<img src="../images/get-nodes.png">
 
 
 ### Set up Visualiser
