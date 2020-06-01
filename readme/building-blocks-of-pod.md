@@ -39,4 +39,18 @@ spec:
       ports:
         - containerPort: 80
           protocol: TCP
-```          
+```  
+
+### Launching and Login to the pod
+```
+kubectl apply -f vote-pod.yml
+```
+[Output]
+pod/vote created
+
+Once pod created we can now login to the pod with below command.
+
+```
+kubectl exec -it vote /bin/sh
+```
+
