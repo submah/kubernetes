@@ -19,3 +19,24 @@ What exactly is a pod? Essentially, a pod is a layer of encapsulation for a set 
 Kubernetes Pods also utilize useful and interesting methods of container networking. One such method is ensuring that all containers in a pod operate on the same “network stack”. This implementation, conveniently, enables containers in a pod to communicate over localhost.
 
 <img src="../images/Pod_Container_Network.png">
+
+### Writing pod Specification
+__file: vote-pod.yml__
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vote
+  labels:
+    app: python
+    role: vote
+    version: v1
+spec:
+  containers:
+    - name: app
+      image: c4clouds/vote:v1
+      ports:
+        - containerPort: 80
+          protocol: TCP
+```          
