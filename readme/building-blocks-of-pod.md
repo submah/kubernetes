@@ -77,5 +77,11 @@ spec:
       nodePort: 30000
   type: NodePort
 ```
+To creat a service
+
+```
+kubectl apply -f vote-service.yml
+
+```
 ### Attaching a volume to a Pod
 
