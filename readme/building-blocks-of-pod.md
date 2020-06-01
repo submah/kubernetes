@@ -54,3 +54,28 @@ Once pod created we can now login to the pod with below command.
 kubectl exec -it vote /bin/sh
 ```
 
+### browsing the web UI of the pod
+In order to browse the UI of the pod we have to create a service for the pod.
+Now what is a Service in Kubernetes?
+
+In Kubernetes, a Service is an abstraction which defines a logical set of Pods and a policy by which to access them. The set of Pods targeted by a Service is usually determined by a selector
+
+__file: vote-service.yml__
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote
+  labels:
+    role: vote
+spec:
+  selector:
+    role: vote
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30000
+  type: NodePort
+```
+### Attaching a volume to a Pod
+
