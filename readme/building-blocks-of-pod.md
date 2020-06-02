@@ -9,7 +9,7 @@ In this session we are going to learn about:
 - Launching Multi-Container Pods
 - Connecting to Individual Containers
 - Launching Replica Set and Fault Tolerance
-- Solution part - Deploying a worker app
+- Deploying a worker app
 
 ### Introduction to pod
 While Kubernetes is considered a container orchestration platform, its true building block is the Pod. According to the Kubernetes documentation “Pods are the smallest deployable units of computing that can be created and managed in Kubernetes”.
@@ -361,4 +361,47 @@ Scaling up application is as easy as running,
 kubectl scale --replicas=8 rs/vote
 
 kubectl get pods --show-labels
+```
+### Deploying a worker app
+We are going to write deployment spec for deploying the worker app.
+Please refer to the [deployment documentation](https://github.com/submah/kubernetes/blob/master/readme/key-concepts-of-kubernetes.md)
+
+__file: worker-deployment.yml__
+
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  namespace: operation
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  revisionHistoryLimit: 4
+  paused: false
+  replicas: 2
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: worker
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3]}
+  template:
+    metadata:
+      name: worker
+      labels:
+        app: java
+        role: worker
+        version: v2
+    spec:
+      containers:
+        - name: app
+          image: c4clouds/worker:latest
+```
+*To apply*
+```
+kubectl apply -f worker-deployment.yml
 ```
