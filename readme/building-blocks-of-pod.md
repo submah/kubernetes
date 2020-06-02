@@ -104,4 +104,11 @@ volumes:
       hostPath:
         path: /vote-volume
 ```
+To validate 
+
+```
+kubectl exec get po -o wide   #check on which node the pod is running
+
+kubectl exec vote -- /bin/sh -c 'df /test-vote-volume'
+```
 
