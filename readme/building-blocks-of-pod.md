@@ -89,4 +89,19 @@ kubectl apply -f vote-service.yml
 <img src="../images/vote-app-service-output.png">
 
 ### Attaching a volume to a Pod
+to add a volume to the vote pod, open the vote.yml file and add the below lines.
+
+vi vote.yml
+
+```yml
+  #allign to name 
+  volumeMounts:
+    - mountPath: /test-vote-volume
+      name: vote-volume
+#Allign to containers
+volumes:
+    - name: vote-volume
+      hostPath:
+        path: /vote-volume
+```
 
