@@ -1,4 +1,4 @@
-<img src="../images/c4logo.png">
+<img src="/images/c4logo.png">
 
 ### Index
   1. [Introduction to Kubernetes](https://github.com/submah/kubernetes/blob/master/readme/introduction-to-kubernetes.md)
