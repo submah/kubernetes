@@ -223,7 +223,7 @@ To Creat this pod
 ```
 kubectl apply -f multi_container_pod.yml
 ```
-### To Login to the pod
+#### To Login to the pod
 
 ```
 kubectl exec -it web  sh  -c nginx
