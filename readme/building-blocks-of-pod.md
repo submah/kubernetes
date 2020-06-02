@@ -114,11 +114,11 @@ to add a volume to the vote pod, open the vote.yml file and add the below lines.
 vi vote.yml
 
 ```yml
-  #allign to name 
+  #align to name 
   volumeMounts:
     - mountPath: /test-vote-volume
       name: vote-volume
-#Allign to containers
+#Align to containers
 volumes:
     - name: vote-volume
       hostPath:
