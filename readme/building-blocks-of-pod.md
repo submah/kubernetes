@@ -137,7 +137,8 @@ kubectl exec vote -- /bin/sh -c 'echo "Checking volume from pod" > /test-vote-vo
 
 kubectl exec vote -- /bin/sh -c 'cat /test-vote-volume/test.txt'
 ```
-=======================================================================================
+==================================================================================
+
 Lets create a pod for database and attach a volume to it. To achieve this we will need to
 
 create a volumes definition
@@ -185,7 +186,7 @@ kubectl get events
 ```
 
 ### Creating Multi Container Pods
-File: multi_container_pod.yml 
+__File: multi_container_pod.yml__
 
 ```yaml
 apiVersion: v1
@@ -223,6 +224,7 @@ To Creat this pod
 ```
 kubectl apply -f multi_container_pod.yml
 ```
+
 ### To Login to the pod
 
 ```
