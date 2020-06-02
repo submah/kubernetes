@@ -17,3 +17,12 @@ ConfigMaps are Kubernetes objects that can draw configuration information from o
 
 A powerful feature of ConfigMaps, is he ability to aggregate a variety of information from different file types into a config map. Furthermore, if we would like to update any of these files while our Pods are running, we can do so and have the changes be made available in realtime.
 
+Benefits:
+- Decouples configuration form pods and components.
+- Store configuration data as key-value pairs 
+**Note: You must create a ConfigMaps before referencing it in a Pod spec.**
+
+*Creating ConfigMaps from:*
+- Directories
+- Files
+- Literal Values
