@@ -117,3 +117,37 @@ spec:
             - containerPort: 80
               protocol: TCP
 ```
+### Setting up Environment Specific Configs
+for setting up environemt specific configs create a new **NameSpace** and modify the files available on kuberetes-lab/voting-app-lab
+provide namespace to the spec files.
+
+### Adding Configs from Files
+
+___file: redis.conf__
+
+```r
+bind 0.0.0.0
+protected-mode yes
+port 6379
+tcp-backlog 511
+timeout 0
+tcp-keepalive 300
+daemonize no
+supervised no
+pidfile /var/run/redis_6379.pid
+loglevel notice
+logfile ""
+databases 16
+always-show-logo yes
+save 900 1
+save 300 10
+save 60 10000
+stop-writes-on-bgsave-error yes
+rdbcompression yes
+rdbchecksum yes
+```
+
+*To Apply*
+```
+kubectl create configmap --from-file redis.conf redis
+```
