@@ -191,3 +191,9 @@ spec:
           configMap:
             name: redis
 ```            
+
+*To check*
+```
+kubectl exec redis-7bb9c48c7f-dcwfw -- /bin/bash -c 'cat /etc/redis.conf'
+```
+**Provide your redis pod name**
