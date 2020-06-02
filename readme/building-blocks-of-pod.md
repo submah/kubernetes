@@ -164,6 +164,9 @@ metadata:
 spec:
   containers:
     - name: db
+      env:
+        - name: POSTGRES_PASSWORD
+          value: root
       image: postgres:9.4
       ports:
         - containerPort: 5432
@@ -219,7 +222,7 @@ spec:
       emptyDir: {}
 ```
 
-To Creat this pod
+### To Creat this pod
 
 ```
 kubectl apply -f multi_container_pod.yml
