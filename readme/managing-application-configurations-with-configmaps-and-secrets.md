@@ -151,3 +151,43 @@ rdbchecksum yes
 ```
 kubectl create configmap --from-file redis.conf redis
 ```
+__file: redis-deployment-with-configmap.yml__
+
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  #namespace: operation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: back
+      role: redis
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: redis
+        tier: back
+        version: latest
+    spec:
+      containers:
+      - image: c4clouds/redis:latest
+        imagePullPolicy: Always
+        name: redis
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+        volumeMounts: #Mounting configmaps as a volume inside pod 
+          - name: redis
+            subPath: redis.conf
+            mountPath: /etc/redis.conf
+      restartPolicy: Always
+      volumes: # specifying configmap as a volume 
+        - name: redis
+          configMap:
+            name: redis
+```            
