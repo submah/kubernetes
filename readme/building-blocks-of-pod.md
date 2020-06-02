@@ -116,6 +116,6 @@ kubectl exec vote -- /bin/sh -c 'df /test-vote-volume'
 kubectl exec vote -- /bin/sh -c 'echo "Checking volume from pod" > /test-vote-volume/test.txt'
 
 kubectl exec vote -- /bin/sh -c 'cat /test-vote-volume/test.txt'
-  ```
+```
 
 
