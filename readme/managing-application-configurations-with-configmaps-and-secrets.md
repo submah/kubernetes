@@ -26,3 +26,43 @@ Benefits:
 - Directories
 - Files
 - Literal Values
+
+__file: vote-cm.yaml__
+
+```yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vote
+  namespace: operation
+data:
+  OPTION_A: Visa
+  OPTION_B: Mastercard
+```
+*To Create ConfigMap Object*
+
+```
+kubectl get cm
+kubectl apply -f vote-cm.yaml
+kubectl get cm
+kubectl describe cm vote
+```
+
+**Note Inorder to use the configmap in your deployment you need to refer the configmap form the file.**
+
+__file: vote-deploy.yaml__
+
+```yml
+spec:
+      containers:
+      - image: c4clouds/vote:v1
+        imagePullPolicy: Always
+        name: vote
+        envFrom:
+          - configMapRef:
+              name: vote
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        restartPolicy: Always
+```
