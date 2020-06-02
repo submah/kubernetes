@@ -111,4 +111,11 @@ kubectl exec get po -o wide   #check on which node the pod is running
 
 kubectl exec vote -- /bin/sh -c 'df /test-vote-volume'
 ```
+**Note: to check whether container is ableto write data to the mountd volume or not**
+```
+kubectl exec vote -- /bin/sh -c 'echo "Checking volume from pod" > /test-vote-volume/test.txt'
+
+kubectl exec vote -- /bin/sh -c 'cat /test-vote-volume/test.txt'
+  ```
+
 
