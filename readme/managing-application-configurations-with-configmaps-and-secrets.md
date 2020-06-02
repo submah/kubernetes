@@ -197,3 +197,76 @@ spec:
 kubectl exec redis-7bb9c48c7f-dcwfw -- /bin/bash -c 'cat /etc/redis.conf'
 ```
 **Provide your redis pod name**
+
+### Creating Secrets to Encrypt Database
+Secrets, in Kubernetes are a lot like ConfigMaps, except they encode information for safekeeping of sensitive information. This is essential for data such as API Keys, certificates, and many others.
+
+As depicted in the following image, the container accesses the secret through a volume in pretty much the same way as it does with configMap volumes:
+
+<img src="../images/secrets.jpg">
+
+*Create secret for Postgresql database*
+__file: db-secret.yml__
+
+```yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db
+  #namespace:
+type: Opaque
+data:
+  # provide base64 encoded username/password (root/password)
+  POSTGRES_USER: YWRtaW4K
+  POSTGRES_PASSWORD: cGFzc3dvcmQK
+```
+
+*To apply*
+```
+kubectl apply -f db-secret.yml
+```
+*Create db-deployment-with-secret*
+
+__file: db-deployment-with-secret.yml__
+
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  #namespace: operation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: back
+      app: postgres
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: postgres
+        role: db
+        tier: back
+    spec:
+      containers:
+      - image: postgres
+        imagePullPolicy: Always
+        name: db
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: db
+                key: POSTGRES_USER
+
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db
+                key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+```
+
