@@ -123,7 +123,7 @@ provide namespace to the spec files.
 
 ### Adding Configs from Files
 
-___file: redis.conf__
+__file: redis.conf__
 
 ```r
 bind 0.0.0.0
