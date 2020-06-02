@@ -285,3 +285,80 @@ kubectl describe pod vote
 *Define the value of **cpu.request** > **cpu.limit** Try to apply and observe.
 * Define the values for **memory.request** and **memory.limit** higher than the total system memory. Apply and observe the deployment and pods.
 ```
+
+### Launching Replica Set and Fault Tolerance
+Lets write the spec for the Rplica Set. This is going to mainly contain,
+
+* replicas
+* selector
+* template (pod spec )
+* minReadySeconds
+
+__file: vote-rs.yml__
+
+```yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: vote
+spec:
+  replicas: 2
+  minReadySeconds: 20
+  selector:
+    matchLabels:
+      role: vote
+    matchExpressions:
+      - {key: version, operator: In, values: [v1, v2, v3, v4, v5]}
+  template:
+    metadata:
+      name: vote
+      labels:
+        app: python
+        role: vote
+        version: v1
+    spec:
+      containers:
+        - name: app
+          image: c4clouds/vote:v1
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+```          
+
+*To apply the changes*
+
+```
+kubectl apply -f vote-rs.yaml --dry-run
+
+kubectl apply -f vote-rs.yaml
+
+kubectl get rs
+
+kubectl describe rs vote
+
+kubectl get pods
+
+kubectl get pods --show-labels
+```
+
+*Checking High Availability*
+Try deleting pods created by the replicaset,
+
+```
+kubectl get pods
+
+kubectl delete pods vote-xxxx vote-yyyy
+```
+*Scalability*
+
+Scaling up application is as easy as running,
+
+```
+kubectl scale --replicas=8 rs/vote
+
+kubectl get pods --show-labels
+```
