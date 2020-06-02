@@ -69,7 +69,7 @@ kubectl describe pod vote
 kubectl logs vote
 ```
 
-# To login to a pod
+### To login to a pod
 ```
 kubectl exec -it vote /bin/sh
 ```
@@ -224,6 +224,8 @@ To Creat this pod
 ```
 kubectl apply -f multi_container_pod.yml
 ```
+
+### To Login to the pod
 
 ```
 kubectl exec -it web  sh  -c nginx
