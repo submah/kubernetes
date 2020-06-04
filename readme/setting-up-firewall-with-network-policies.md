@@ -126,6 +126,14 @@ spec:
       ports:
         - containerPort: 3306
 ```
+*To apply the spec*
+
+```
+kubectl apply -f create-mysql-namespace.yml
+
+kubectl apply -f mysql-pod.yml
+```
+
 *Create a service for mysql*
 
 __File: mysql-service.yml__
@@ -144,6 +152,12 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
+```
+
+*To apply the spec*
+
+```
+kubectl apply -f mysql-service.yml
 ```
 
 **Note: Now if you access the *httpd-php* web application with Node *NodePublc-IP:30003/index.php* you can see httpd-php is able to connect**
@@ -170,6 +184,12 @@ spec:
     matchLabels: {}
   policyTypes:
   - Ingress
+```
+
+*To apply the spec*
+
+```
+kubectl apply -f mysql-namespace-deny-all-incoming.yml
 ```
 
 **Note: Now no you browser enter NodePublc-IP:30003/index.php**
@@ -204,4 +224,10 @@ spec:
     - podSelector:
         matchLabels:
           app: apache
-```          
+```     
+
+*To apply the spec*
+
+```
+kubectl apply -f from-httpd-php-web-to-mysql-pod-np.yml
+```
