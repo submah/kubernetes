@@ -24,3 +24,82 @@ In Kubernetes, pods are capable of communicating with each other and will accept
 **egress** includes outbound traffic whitelist rules
 
 <img src="../images/NetworkPolicy.png">
+
+### Creating default network policy for namespace
+*Create **web** namespace*
+```
+mkdir {web,mysql}
+
+cd web
+```
+
+__File: create-web-namespace.yml__
+
+```yml
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: web
+  labels:
+    project: web
+```
+
+__File: httpd-php-pod.yml__
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: web
+  name: httpd-php
+  labels:
+    app: apache
+    role: httpd-php 
+spec:
+  containers:
+    - name: httpd-php
+      image: c4clouds/httpd-php
+      command: ["/usr/sbin/apachectl"]
+      args: ["-D", "FOREGROUND"]
+      ports:
+        - containerPort: 80
+          protocol: TCP
+```
+**Note: In order to access the httpd-php pod we have to create one service**
+
+__File: httpd-php-service.yml__
+
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: web
+  name: httpd-php-pod-service
+  labels:
+    role: apache
+spec:
+  selector:
+    app: apache
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30003
+  type: NodePort
+```
+
+
+*Create **mysql** namespace*
+
+```bash
+cd mysql
+```
+__File: create-mysql-namespace.yml__
+
+```yml
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: mysql
+  labels:
+    project: mysql
+```
