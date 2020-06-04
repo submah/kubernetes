@@ -2,8 +2,9 @@
 
 In this session we are going to learn: 
 - What is NetworkPolicy
-- Creating default network policy for namespace
-- Inter namesapce pods communication with NetworPolicy
+- Creating default NetworkPolicy for Namespace
+- Create and apply NetworkPolicy for mysql Namespace
+- Inter namesapce pods communication with NetworPolicy (web with mysql)
 
 ### What is NetworkPolicy.
 Network policies are Kubernetes resources that control the traffic between pods and/or network endpoints. They uses labels to select pods and specify the traffic that is directed toward those pods using rules. Most CNI plugins support the implementation of network policies, however, if they don't and we create a NetworkPolicy, then that resource will be ignored.
@@ -150,3 +151,7 @@ spec:
 [Output]
 
 <img src="../images/php-connect-mysql.PNG">
+
+## Without NetworkPolicy all pods can communicate to other pods.
+
+
