@@ -146,7 +146,7 @@ spec:
       targetPort: 3306
 ```
 
-**Note: Now if you access the *httpd-php* web application with Node *Public-IP:30003* you can see httpd-php is able to connect**
+**Note: Now if you access the *httpd-php* web application with Node *NodePublc-IP:30003/index.php* you can see httpd-php is able to connect**
 
 [Output]
 
@@ -154,4 +154,25 @@ spec:
 
 ## Without NetworkPolicy all pods can communicate to other pods.
 
+
+### Create and apply NetworkPolicy
+
+__File: mysql-namespace-deny-all-incoming.yml__
+
+```yml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mysql-namespace-deny-all-incoming
+  namespace: mysql
+spec:
+  podSelector:
+    matchLabels: {}
+  policyTypes:
+  - Ingress
+```
+
+**Note: Now no you browser enter NodePublc-IP:30003/index.php**
+
+[Output]
 
