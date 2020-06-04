@@ -103,3 +103,50 @@ metadata:
   labels:
     project: mysql
 ```
+
+__File: mysql-pod.yml__
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: mysql
+  name: mysql-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: mysql-pod
+      image: mysql:5.6
+      env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+      ports:
+        - containerPort: 3306
+```
+*Create a service for mysql*
+
+__File: mysql-service.yml__
+
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: mysql
+  name: mysql-pod-service
+  labels:
+    app: mysql
+spec:
+  selector:
+    role: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+```
+
+**Note: Now if you access the *httpd-php* web application with Node *Public-IP:30003* you can see httpd-php is able to connect**
+
+[Output]
+
+<img src="../images/php-connect-mysql.PNG">
