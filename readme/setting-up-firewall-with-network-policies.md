@@ -2,7 +2,8 @@
 
 In this session we are going to learn: 
 - What is NetworkPolicy
-- Inter namesapce pod communication with NetworPolicy
+- Creating default network policy for namespace
+- Inter namesapce pods communication with NetworPolicy
 
 ### What is NetworkPolicy.
 Network policies are Kubernetes resources that control the traffic between pods and/or network endpoints. They uses labels to select pods and specify the traffic that is directed toward those pods using rules. Most CNI plugins support the implementation of network policies, however, if they don't and we create a NetworkPolicy, then that resource will be ignored.
@@ -21,3 +22,5 @@ In Kubernetes, pods are capable of communicating with each other and will accept
 **policyTypes** defines the type of traffic to be restricted (inbound, outbound, both)
 **ingress** includes inbound traffic whitelist rules
 **egress** includes outbound traffic whitelist rules
+
+<img src="../images/networkpolicy.png">
