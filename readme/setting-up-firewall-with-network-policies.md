@@ -177,3 +177,31 @@ spec:
 [Output]
 
 <img src="../images/httpd-mysql-error.PNG">
+
+In order to resolve this we have create a NetworkPolicy to allow traffic from httpd-php pod in web Namespace to mysql-pod on mysql Namespace. 
+
+__File: from-httpd-php-web-to-mysql-pod-np.yml__
+
+```yml
+kind: NetworkPolicy
+metadata:
+  name: access-httpd-php
+  namespace: mysql
+spec:
+  podSelector:
+    matchLabels:
+      app: mysql
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+             project: web
+      - podSelector:
+          matchLabels:
+            app: apache
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: apache
+```          
