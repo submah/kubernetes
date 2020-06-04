@@ -23,4 +23,4 @@ In Kubernetes, pods are capable of communicating with each other and will accept
 **ingress** includes inbound traffic whitelist rules
 **egress** includes outbound traffic whitelist rules
 
-<img src="../images/networkpolicy.png">
+<img src="../images/NetworkPolicy.png">
