@@ -176,3 +176,4 @@ spec:
 
 [Output]
 
+<img src="../images/httpd-mysql-error.PNG">
