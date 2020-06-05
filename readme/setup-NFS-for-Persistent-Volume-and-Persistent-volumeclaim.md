@@ -120,4 +120,15 @@ spec:
     - name: demo-pvc #Persistent volume name
       persistentVolumeClaim:
         claimName: demo-pvc #Persistent volime claim name
-```        
+```
+*To apply the spec*
+
+```
+kubectl apply -f persistent-volumeclaim-pod.yml
+```
+
+### To check the PVC
+
+```
+kubectl exec -it nginx-pod -- /bin/sh -c "echo 'I hope this is persistent' > /var/www/html/persistent" kubectl exec -it nginx-pod -- cat /var/www/html/persistent
+```
