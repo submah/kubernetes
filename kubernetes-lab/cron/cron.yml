@@ -1,0 +1,18 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: middle
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: middle
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - echo `date` cron is running every five minutes.
+          restartPolicy: OnFailure
