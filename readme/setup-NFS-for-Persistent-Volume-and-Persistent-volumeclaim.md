@@ -23,4 +23,25 @@ sudo mkdir -p /mnt/sharedfolder
 sudo chown nobody:nogroup /mnt/sharedfolder 
 sudo chmod 777 /mnt/sharedfolder
 ```
+*To export the directoy over NFS*
+To export the directoy over NFS open the /etc/exports file and provide the path and the server who want to access the sharedfolder 
+
+```
+vi /etc/exports
+
+/mnt/sharedfolder **client_IP_1**(rw,sync,no_subtree_check) 
+/mnt/sharedfolder **client_IP_2**(rw,sync,no_subtree_check)
+
+exportfs -a
+
+systemctl restart nfs-kernel-server
+```
+
+*Install the NFS Client on the Client Systems*
+
+```
+apt update
+
+apt install nfs-common
+```
 
