@@ -1,0 +1,21 @@
+kind: NetworkPolicy
+metadata:
+  name: access-httpd-php
+  namespace: mysql
+spec:
+  podSelector:
+    matchLabels:
+      app: mysql
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+             project: web
+      - podSelector:
+          matchLabels:
+            app: apache
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: apache

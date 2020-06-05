@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: web
+  name: httpd-php
+  labels:
+    app: apache
+    role: httpd-php 
+spec:
+  containers:
+    - name: httpd-php
+      image: c4clouds/httpd-php
+      command: ["/usr/sbin/apachectl"]
+      args: ["-D", "FOREGROUND"]
+      ports:
+        - containerPort: 80
+          protocol: TCP

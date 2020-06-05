@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  #namespace: operation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: back
+      app: postgres
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: postgres
+        role: db
+        tier: back
+    spec:
+      containers:
+      - image: postgres
+        imagePullPolicy: Always
+        name: db
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef: 
+                name: db
+                key: POSTGRES_USER
+
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db
+                key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 5432
+          protocol: TCP
