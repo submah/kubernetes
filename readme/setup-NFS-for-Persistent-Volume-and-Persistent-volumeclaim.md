@@ -45,3 +45,37 @@ apt update
 apt install nfs-common
 ```
 
+*To verify*
+```
+showmount -e 192.168.50.53 # IP address fo the NFS server
+```
+
+### Create Persistent volume (PV)
+Create a persistent volume on Kubernetes mster node
+
+__File: create-persistent-volume.yml__
+
+```yml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: demo-pv
+spec:
+  capacity:
+    storage: 5Gi # GB in Size
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  nfs:
+    path: /mnt/sharedfolder #NFS Share Path
+    server: 192.168.50.53   #NFS share server IP Address
+```
+
+*To apply the spec*
+
+```
+kubectl apply -f create-persistent-volume.yml
+```
+
+
