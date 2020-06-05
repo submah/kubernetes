@@ -5,6 +5,7 @@ In this session we are going to learn about:
 - How to setup NFS on Ubuntu 
 - Create Persistent volume (PV)
 - Create Persistent Volume Clame (PVC)
+- Persistnt volume claim for storing the data
 
 
 ### How to setup NFS on Ubuntu
@@ -78,4 +79,45 @@ spec:
 kubectl apply -f create-persistent-volume.yml
 ```
 
+### kubectl apply -f create-persistent-volume.yml
 
+Create a Persistent volumeclaim on masternode
+
+__File: create-persistent-volumeclaim.yml__
+
+```yml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: demo-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi #Mention the claim volume size in GB, MB or KB
+```      
+
+### Persistnt volume claim for storing the data
+
+create a pod and use the persistnt volume claim for storing the data
+
+__File: persistent-volumeclaim-pod.yml__
+
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: demo-pvc #persistent volume name
+  volumes:
+    - name: demo-pvc #Persistent volume name
+      persistentVolumeClaim:
+        claimName: demo-pvc #Persistent volime claim name
+```        
