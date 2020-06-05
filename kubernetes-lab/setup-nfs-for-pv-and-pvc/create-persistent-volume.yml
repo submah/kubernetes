@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   nfs:
     path: /mnt/sharedfolder
-    server: 192.168.50.53  #NFS share server IP Address
+    server: 10.128.0.9  #NFS share server IP Address

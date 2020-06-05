@@ -8,8 +8,8 @@ spec:
       image: nginx
       volumeMounts:
       - mountPath: "/var/www/html"
-        name: demo-pvc #persistent volume name
+        name: demo-pv #persistent volume name
   volumes:
-    - name: demo-pvc #Persistent volume name
+    - name: demo-pv #Persistent volume name
       persistentVolumeClaim:
         claimName: demo-pvc #Persistent volime claim name
