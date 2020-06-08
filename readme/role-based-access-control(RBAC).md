@@ -1,5 +1,7 @@
 <img src="../images/c4logo.png">
 
+**RBAC** is a security design that restricts access to valuable resources based on the role the user holds, hence the name role-based. To understand the importance and the need of having RBAC policies in place, let’s consider a system that doesn’t use it. Let’s say that you have an HR management solution, but the only security access measure used is that users must authenticate themselves through a username and a password. Having provided their credentials, users gain full access to every module in the system (recruitment, training, staff performance, salaries, etc.). A slightly more secure system will differentiate between regular user access and “admin” access, with the latter providing potentially destructive privileges. For example, ordinary users cannot delete a module from the system, whereas an administrator can. But still, users without admin access can read and modify the module’s data regardless of whether their current job entails doing this.
+
 ### Kubernetes Access Control: Authentication and Authorization
 
 # Role Based Access Control (RBAC)
@@ -19,7 +21,7 @@ In this lab we are going to do,
 > Kubernetes API can be accessed by,
 
   *  Users
-  * Service Accounts
+  *  Service Accounts
 
 
 
