@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  namespace: mysql
+  name: kim-mysql
+rules:
+- apiGroups: ["*"]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch", "update", "patch", "create"]
