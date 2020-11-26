@@ -79,7 +79,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```yml
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
-#Open the file nad update the service to
+#Open the file and update the service to
 ports:
     - nodePort: 32414
       port: 443
@@ -109,7 +109,7 @@ kubectl get secrets -n kubernetes-dashboard
 ### Set up Visualiser
 ```
 git clone https://github.com/submah/kubernetes.git
-apply -f kubernetes/kubernetes-ops-view/deploy
+kubectl apply -f kubernetes/kubernetes-ops-view/deploy
 ```
 [Output]
 ```
