@@ -90,17 +90,46 @@ ports:
 kubectl apply -f recommended.yaml
 ```
 
+### Creating a Service Account
+We are creating Service Account with name admin-user in namespace kubernetes-dashboard first.
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
+### Creating a ClusterRoleBinding
+the ClusterRole cluster-admin already exists in the cluster. We can use it and create only ClusterRoleBinding for our ServiceAccount. If it does not exist then you need to create this role first and grant required privileges manually.
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
 In order to access the Kubernetes dashboard https://Node-IP-Address:32414 
 
 [output]
 
 <img src="../images/kubernetes-dashboard-token.png">
 
-__To Generate Token__
+__Getting a Bearer Token__
 ```yml
-# List secrets using:
-kubectl get secrets -n kubernetes-dashboard
-
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 #Copy and paste the token on the dashboard browser window
 ```
 <img src="../images/kubernetes-dashboard.png">
