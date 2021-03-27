@@ -81,10 +81,10 @@ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/re
 
 #Open the file and update the service to
 ports:
-    - nodePort: 32414
-      port: 443
-      targetPort: 8443
-  type: NodePort
+  - nodePort: 32414
+    port: 443
+    targetPort: 8443
+type: NodePort
 
 #To apply 
 kubectl apply -f recommended.yaml
