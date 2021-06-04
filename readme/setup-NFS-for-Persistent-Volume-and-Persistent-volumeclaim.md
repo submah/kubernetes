@@ -67,6 +67,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
+  storageClassName: nfs
   persistentVolumeReclaimPolicy: Recycle
   nfs:
     path: /mnt/sharedfolder #NFS Share Path
@@ -93,6 +94,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassname: nfs
   resources:
     requests:
       storage: 1Gi #Mention the claim volume size in GB, MB or KB
