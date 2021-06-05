@@ -175,7 +175,7 @@ kubectl config use-context kubernetes-admin@kubernetes
 file: kim-role.yml
 
 ```yaml
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   namespace: operation
