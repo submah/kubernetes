@@ -203,6 +203,7 @@ In order to resolve this we have create a NetworkPolicy to allow traffic from ht
 __File: from-httpd-php-web-to-mysql-pod-np.yml__
 
 ```yml
+apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: access-httpd-php
