@@ -148,7 +148,7 @@ metadata:
     app: mysql
 spec:
   selector:
-    role: mysql
+    app: mysql
   ports:
     - port: 3306
       targetPort: 3306
