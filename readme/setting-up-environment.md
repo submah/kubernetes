@@ -132,6 +132,9 @@ __Getting a Bearer Token__
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
 #Copy and paste the token on the dashboard browser window
 ```
+```
+kubectl -n kubernetes-dashboard create token admin-user
+```
 <img src="../images/kubernetes-dashboard.png">
 
 
