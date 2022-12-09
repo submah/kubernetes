@@ -48,7 +48,7 @@ sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 ```
 
-## Step 5: Update Iptables Settings
+## Step 5: Update Iptables Settings [On All Nodes]
 
 ```
 cat <<EOF > /etc/sysctl.d/k8s.conf
@@ -60,7 +60,7 @@ sysctl --system
 
 ```
 
-## Step 6: Disable SELinux
+## Step 6: Disable SELinux [On All Nodes]
 
 ```
 sudo setenforce 0
