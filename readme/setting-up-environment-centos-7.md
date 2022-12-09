@@ -89,6 +89,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
+<img src="../images/get-nodes.png">
 
 ## Step 4: Check Status of Cluster [On Master Node]
 ```
@@ -96,4 +97,104 @@ sudo kubectl get nodes
 ```
 
 ## Step 5: Join Worker Node to Cluster [On Worker Nodes]
-copy the output of [kubeadm init] command and paste, hit enter to execute and join the worker nod to cluster
+After master being initialized, it should display the command which could be used on all worker/nodes to join the k8s cluster.
+```
+sudo kubeadm join 10.128.0.2:6443 --token m7qgmb.6gjki057ajpo49nq \
+    --discovery-token-ca-cert-hash sha256:fc5d3ec0fe14b141cf87baa206082cf3a26b8c158c02e255f232e1768905b8b7
+```
+Note: Don't copy and paste the above command, use the output which you have received at the master initialization [kubeadm init]
+
+### Launching Kubernetes Dashboard
+```yml
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+
+#Open the file and update the service to
+ports:
+  - nodePort: 32414
+    port: 443
+    targetPort: 8443
+type: NodePort
+
+#To apply 
+kubectl apply -f recommended.yaml
+```
+
+### Creating a Service Account
+We are creating Service Account with name admin-user in namespace kubernetes-dashboard first.
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
+### Creating a ClusterRoleBinding
+the ClusterRole cluster-admin already exists in the cluster. We can use it and create only ClusterRoleBinding for our ServiceAccount. If it does not exist then you need to create this role first and grant required privileges manually.
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
+In order to access the Kubernetes dashboard https://Node-IP-Address:32414 
+
+[output]
+
+<img src="../images/kubernetes-dashboard-token.png">
+
+__Getting a Bearer Token__
+```yml
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+#Copy and paste the token on the dashboard browser window
+```
+```
+kubectl -n kubernetes-dashboard create token admin-user
+```
+<img src="../images/kubernetes-dashboard.png">
+
+
+### Set up Visualiser
+```
+git clone https://github.com/submah/kubernetes.git
+kubectl apply -f kubernetes/kubernetes-ops-view/deploy
+```
+[Output]
+```
+serviceaccount/kube-ops-view created
+clusterrole.rbac.authorization.k8s.io/kube-ops-view created
+clusterrolebinding.rbac.authorization.k8s.io/kube-ops-view created
+deployment.apps/kube-ops-view created
+ingress.extensions/kube-ops-view created
+deployment.apps/kube-ops-view-redis created
+service/kube-ops-view-redis created
+service/kube-ops-view created
+```
+
+Visualiser is accessable over a service port whic we can get it for below command
+
+```
+kubectl get svc | grep -i kube-ops-view
+```
+
+
+```
+http://<NODE_IP>:servie-port/#scale=2.0
+```
+
+<img src="../images/viasualizer.PNG">
+
+
