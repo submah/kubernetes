@@ -1,5 +1,5 @@
 
-<img src="images/c4logo.png">
+<img src="https://github.com/submah/kubernetes/blob/dev/images/c4logo.png">
 
 **LAB-01**
 =======================================================================================================================================
