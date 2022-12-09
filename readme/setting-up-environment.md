@@ -161,8 +161,6 @@ Visualiser is accessable over a service port whic we can get it for below comman
 kubectl get svc | grep -i kube-ops-view
 ```
 
-insert picture kube-ops-view-port
-
 ```
 http://<NODE_IP>:servie-port/#scale=2.0
 ```
