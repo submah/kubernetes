@@ -88,7 +88,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ## Step 3: Set Up Pod Network [On Master Node]
 
 ```
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+wget https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+sed -i 's/10.244.0.0/192.168.0.0/' kube-flannel.yml
+kubectl apply -f kube-flannel.yml
 ```
 <img src="../images/get-nodes.png">
 
